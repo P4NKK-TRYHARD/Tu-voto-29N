@@ -765,6 +765,85 @@ a{color:var(--accent)}
   }
   function makePdf(){
     var J=window.jspdf&&window.jspdf.jsPDF; if(!J||!last.length||!lastTop.n)return false;
+    var doc=new J({unit:"pt",format:"a4"}),W=595.28,H=841.89,M=44,y;
+    var INK=[22,22,46],GREY=[93,93,115],PAPER=[246,246,243],SEP=[233,201,160],SEPD=[214,174,120],BROWN=[42,29,12],
+        TEAL=[11,127,134],LINE=[220,219,227],WHITE=[255,255,255],CREAM=[243,234,217],TRACK=[230,230,236];
+    function ink(c){doc.setTextColor(c[0],c[1],c[2]);}
+    function fill(c){doc.setFillColor(c[0],c[1],c[2]);}
+    function stroke(c){doc.setDrawColor(c[0],c[1],c[2]);}
+    function font(b,s){doc.setFont("helvetica",b?"bold":"normal");doc.setFontSize(s);}
+    function caps(t,x,yy,c,opt){font(true,7.5);ink(c);doc.text(t.toUpperCase(),x,yy,opt||{});}
+    function bg(){fill(PAPER);doc.rect(0,0,W,H,"F");}
+    // Cabecera sepia con rayas, 29N y urna
+    bg();
+    fill(SEP);doc.rect(0,0,W,176,"F");
+    stroke(SEPD);doc.setLineWidth(.6);
+    for(var s=-176;s<W;s+=22){doc.line(s,176,s+176,0);}
+    ink(BROWN);font(true,104);doc.text("29N",M-4,118);
+    font(true,20);doc.text("Mi resultado del test",M,152);
+    var ux=W-M-124,uy=40;
+    fill(BROWN);doc.roundedRect(ux-8,uy,136,10,3,3,"F");
+    fill(SEP);doc.roundedRect(ux+38,uy+3,44,4,2,2,"F");
+    fill([244,228,205]);stroke(BROWN);doc.setLineWidth(2.5);doc.rect(ux,uy+10,120,100,"FD");
+    function env(x,yy,c){fill(c);stroke(BROWN);doc.setLineWidth(1.2);doc.rect(x,yy,62,36,"FD");doc.line(x,yy,x+31,yy+20);doc.line(x+62,yy,x+31,yy+20);}
+    env(ux+8,uy+66,WHITE);env(ux+50,uy+62,SEPD);env(ux+28,uy+34,WHITE);
+    // Banda de tinta
+    fill(INK);doc.rect(0,176,W,26,"F");
+    caps("Elecciones generales · Domingo 29 de noviembre de 2026",M,193,CREAM);
+    caps("a-la-urna.vercel.app",W-M,193,CREAM,{align:"right"});
+    // Tarjeta con el resultado
+    y=226;var one=lastTop.n===1,ch=one?112:96;
+    fill(SEPD);doc.roundedRect(M+5,y+5,W-2*M,ch,10,10,"F");
+    fill(WHITE);stroke(INK);doc.setLineWidth(1.5);doc.roundedRect(M,y,W-2*M,ch,10,10,"FD");
+    caps(one?"El que más coincide con tus respuestas":"Los que más coinciden con tus respuestas",M+20,y+26,GREY);
+    font(true,one?44:lastTop.n>2?26:34);ink(one?last[0].rgb:INK);
+    doc.text(one?last[0].name.toUpperCase():lastTop.s,M+20,y+(one?70:66));
+    if(one&&last[0].topics.length){font(false,10);ink(GREY);doc.text("Coincidís sobre todo en: "+last[0].topics.join(", ").toLowerCase()+".",M+20,y+94);}
+    y+=ch+36;
+    // Orden de coincidencia
+    font(true,13);ink(INK);doc.text("Todos, por orden de coincidencia",M,y);
+    var bx=M+118,bw=W-M-bx;
+    last.forEach(function(r,k){
+      y+=30;
+      fill(r.rgb);doc.circle(M+9,y-4,9,"F");
+      font(true,9);ink(WHITE);doc.text(String(k<lastTop.n?1:k+1),M+9,y-1,{align:"center"});
+      font(true,12);ink(INK);doc.text(r.name,M+26,y);
+      fill(TRACK);doc.roundedRect(bx,y-10,bw,12,6,6,"F");
+      if(r.r>0){fill(r.rgb);doc.roundedRect(bx,y-10,Math.max(12,bw*r.r),12,6,6,"F");}
+      font(false,8);ink(GREY);doc.text(r.topics.length?"Coincides en: "+r.topics.join(", ").toLowerCase():"Sin coincidencias",bx,y+12);
+      y+=8;
+    });
+    // Respuestas, agrupadas por tema
+    y+=38;font(true,13);ink(INK);doc.text("Tus respuestas",M,y);y+=4;
+    var PILL={"1":["De acuerdo",TEAL,WHITE],"0":["Neutral",TRACK,INK],"-1":["En desacuerdo",INK,WHITE]},topic="";
+    Q.forEach(function(q,i){
+      font(false,9);
+      var lines=doc.splitTextToSize((i+1)+". "+q.q,W-2*M-104);
+      var h=lines.length*11+9;
+      if(y+h+(q.t!==topic?22:0)>H-60){
+        doc.addPage();bg();fill(INK);doc.rect(0,0,W,26,"F");caps("Mi resultado del test · 29N",M,17,CREAM);
+        caps("a-la-urna.vercel.app",W-M,17,CREAM,{align:"right"});y=40;topic="";
+      }
+      if(q.t!==topic){topic=q.t;y+=22;caps(topic,M,y,TEAL);}
+      y+=15;font(false,9);ink(INK);doc.text(lines,M,y);
+      var pl=ans[i]===null?["Sin responder",WHITE,GREY]:PILL[String(ans[i])];
+      fill(pl[1]);doc.roundedRect(W-M-84,y-10.5,84,15,7,7,"F");
+      font(true,7.5);ink(pl[2]);doc.text(pl[0],W-M-42,y,{align:"center"});
+      y+=h-15;
+      stroke(LINE);doc.setLineWidth(.5);doc.line(M,y+2,W-M,y+2);
+    });
+    // Pie en todas las páginas
+    var n=doc.getNumberOfPages()||1;
+    for(var pg=1;pg<=n;pg++){
+      doc.setPage(pg);stroke(LINE);doc.setLineWidth(.5);doc.line(M,H-44,W-M,H-44);
+      font(false,7.5);ink(GREY);doc.text("Este test simplifica posiciones complejas y no es una recomendación de voto. El voto es tuyo.",M,H-30);
+      font(true,7.5);ink(INK);doc.text(pg+" / "+n,W-M,H-30,{align:"right"});
+    }
+    doc.save("mi-resultado-29n.pdf");
+    return true;
+  }
+  function makePdfOld(){
+    var J=window.jspdf&&window.jspdf.jsPDF; if(!J||!last.length||!lastTop.n)return false;
     var doc=new J({unit:"pt",format:"a4"}),W=595.28,M=48,y;
     var INK=[22,22,46],GREY=[93,93,115];
     function ink(c){doc.setTextColor(c[0],c[1],c[2]);}
