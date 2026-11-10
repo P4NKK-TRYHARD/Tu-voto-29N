@@ -1,11 +1,5 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>A la urna · 29N</title>
-<meta name="description" content="Guía para votar en persona el 29N: cómo votar, datos 2018–2026, propuestas de cada partido y test.">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Vota en persona el 29N</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;600;700&display=swap">
@@ -323,8 +317,6 @@ a{color:var(--accent)}
   .count{gap:6px}
 }
 </style>
-</head>
-<body>
 
 <nav class="topbar" id="topbar" aria-label="Páginas" hidden>
   <div class="wrap">
@@ -389,7 +381,7 @@ a{color:var(--accent)}
       <a href="#como-votar"><b>Cómo votar</b><span>Horario, qué llevar y los cuatro pasos para votar en tu colegio.</span><i>Abrir →</i></a>
       <a href="#datos"><b>2018 vs 2026</b><span>Inmigración, vivienda, empleo, pensiones y delitos, en cifras oficiales.</span><i>Abrir →</i></a>
       <a href="#propuestas"><b>Propuestas</b><span>Qué plantea cada partido, tema a tema.</span><i>Abrir →</i></a>
-      <a class="dark" href="#test"><b>Haz el test</b><span>12 afirmaciones para ver con quién coincides.</span><i>Empezar →</i></a>
+      <a class="dark" href="#test"><b>Haz el test</b><span>25 afirmaciones para ver con quién coincides.</span><i>Empezar →</i></a>
     </div>
   </div>
 </section>
@@ -452,7 +444,7 @@ a{color:var(--accent)}
   <div class="wrap reveal">
     <p class="eyebrow">Test</p>
     <h2>¿Con quién coincides?</h2>
-    <p class="muted intro">12 afirmaciones. Responde lo que piensas y verás en qué coincides con cada partido. No es una recomendación de voto: es una ayuda para comparar.</p>
+    <p class="muted intro">25 afirmaciones. Responde lo que piensas y verás qué partido coincide más con tus respuestas. No es una recomendación de voto: es una ayuda para comparar.</p>
     <div class="quiz" id="quiz"></div>
   </div>
 </section>
@@ -505,7 +497,7 @@ a{color:var(--accent)}
     <p class="eyebrow">Test</p>
     <h2>¿Con quién coincides?</h2>
     <p class="sample">“El Estado debe limitar por ley el precio de los alquileres.”</p>
-    <p class="muted intro">¿De acuerdo o en desacuerdo? Responde a 12 afirmaciones como esta y compara tus respuestas con la posición de cada partido.</p>
+    <p class="muted intro">¿De acuerdo o en desacuerdo? Responde a 25 afirmaciones como esta y compara tus respuestas con la posición de cada partido.</p>
     <a class="btnlink" href="#test">Empezar el test →</a>
   </div>
 </section>
@@ -736,8 +728,24 @@ a{color:var(--accent)}
     {t:"Impuestos y pensiones",q:"Las grandes fortunas y herencias deben pagar más impuestos.",p:{PSOE:1,PP:-1,Vox:-1,Sumar:1,Podemos:1}},
     {t:"Impuestos y pensiones",q:"Las pensiones deben subir cada año con el IPC, garantizado por ley.",p:{PSOE:1,PP:1,Vox:0,Sumar:1,Podemos:1}},
     {t:"Delitos",q:"Los extranjeros condenados por delitos graves deben ser expulsados.",p:{PSOE:0,PP:1,Vox:1,Sumar:-1,Podemos:-1}},
-    {t:"Delitos",q:"Hay que derogar o reformar a fondo la ley de seguridad ciudadana (\"ley mordaza\").",p:{PSOE:1,PP:-1,Vox:-1,Sumar:1,Podemos:1}}
+    {t:"Delitos",q:"Hay que derogar o reformar a fondo la ley de seguridad ciudadana (\"ley mordaza\").",p:{PSOE:1,PP:-1,Vox:-1,Sumar:1,Podemos:1}},
+    {t:"Inmigración",q:"Quien entre en España de forma ilegal debe ser repatriado.",p:{PSOE:0,PP:0,Vox:1,Sumar:-1,Podemos:-1}},
+    {t:"Inmigración",q:"Hay que cerrar los centros de internamiento de extranjeros (CIE).",p:{PSOE:0,PP:0,Vox:-1,Sumar:1,Podemos:1}},
+    {t:"Inmigración",q:"Hay que facilitar la nacionalidad y el derecho al voto a los inmigrantes que viven aquí.",p:{PSOE:0,PP:-1,Vox:-1,Sumar:0,Podemos:1}},
+    {t:"Vivienda",q:"Hay que subir los impuestos a los pisos turísticos o limitarlos.",p:{PSOE:1,PP:0,Vox:0,Sumar:1,Podemos:1}},
+    {t:"Vivienda",q:"Hay que desalojar a los okupas de forma inmediata.",p:{PSOE:0,PP:1,Vox:1,Sumar:0,Podemos:0}},
+    {t:"Vivienda",q:"Hay que suspender los desahucios de familias vulnerables que no tienen alternativa.",p:{PSOE:1,PP:0,Vox:0,Sumar:1,Podemos:1}},
+    {t:"Vivienda",q:"Para bajar los precios hay que liberalizar suelo y quitar trabas a la construcción.",p:{PSOE:0,PP:1,Vox:1,Sumar:0,Podemos:0}},
+    {t:"Empleo",q:"El salario mínimo debe fijarse por ley en al menos el 60% del salario medio.",p:{PSOE:1,PP:0,Vox:0,Sumar:1,Podemos:1}},
+    {t:"Economía",q:"Hay que mantener abiertas las centrales nucleares.",p:{PSOE:-1,PP:1,Vox:1,Sumar:-1,Podemos:-1}},
+    {t:"Impuestos y pensiones",q:"Hay que mantener el impuesto especial a la banca.",p:{PSOE:1,PP:-1,Vox:-1,Sumar:1,Podemos:1}},
+    {t:"Impuestos y pensiones",q:"Parte de las pensiones debería basarse en un fondo de ahorro (capitalización), no solo en el reparto.",p:{PSOE:-1,PP:0,Vox:1,Sumar:-1,Podemos:-1}},
+    {t:"Delitos",q:"Los hurtos repetidos deben castigarse con más dureza.",p:{PSOE:1,PP:1,Vox:1,Sumar:-1,Podemos:-1}},
+    {t:"Delitos",q:"Hay que ampliar la prisión permanente revisable a más delitos.",p:{PSOE:-1,PP:1,Vox:1,Sumar:-1,Podemos:-1}}
   ];
+  var ORD={"Inmigración":0,"Vivienda":1,"Empleo":2,"Economía":3,"Impuestos y pensiones":4,"Delitos":5};
+  Q=Q.map(function(q,i){return [q,i];}).sort(function(a,b){return (ORD[a[0].t]-ORD[b[0].t])||(a[1]-b[1]);}).map(function(x){return x[0];});
+  var lastTop={n:0,s:""};
   var last=[];
   var ans=new Array(Q.length).fill(null), cur=0, quiz=document.getElementById("quiz");
   var OPTS=[["De acuerdo",1],["Neutral",0],["En desacuerdo",-1]];
@@ -756,7 +764,7 @@ a{color:var(--accent)}
     document.getElementById("skip").addEventListener("click",function(){ans[cur]=null;next();});
   }
   function makePdf(){
-    var J=window.jspdf&&window.jspdf.jsPDF; if(!J||!last.length)return false;
+    var J=window.jspdf&&window.jspdf.jsPDF; if(!J||!last.length||!lastTop.n)return false;
     var doc=new J({unit:"pt",format:"a4"}),W=595.28,M=48,y;
     var INK=[22,22,46],GREY=[93,93,115];
     function ink(c){doc.setTextColor(c[0],c[1],c[2]);}
@@ -770,15 +778,17 @@ a{color:var(--accent)}
     doc.text("Elecciones generales",W-M,116,{align:"right"});
     doc.text("Domingo 29 de noviembre de 2026",W-M,132,{align:"right"});
     // Coincidencias
-    y=192;ink(INK);doc.setFont("helvetica","bold");doc.setFontSize(13);doc.text("Coincidencia con cada partido",M,y);
+    y=192;ink(INK);doc.setFont("helvetica","bold");doc.setFontSize(13);doc.text(lastTop.n>1?"Los que más coinciden con tus respuestas":"El que más coincide con tus respuestas",M,y);
+    y+=36;doc.setFontSize(lastTop.n>2?22:30);doc.text(lastTop.s,M,y);
+    y+=34;doc.setFontSize(13);doc.text("Todos, por orden de coincidencia",M,y);
     var bx=M+92,bw=W-M-bx-60;
     last.forEach(function(r){
       y+=30;
       doc.setFont("helvetica","bold");doc.setFontSize(12);ink(r.rgb);doc.text(r.name.toUpperCase(),M,y);
       fill([230,230,236]);doc.roundedRect(bx,y-10,bw,12,6,6,"F");
-      if(r.pct>0){fill(r.rgb);doc.roundedRect(bx,y-10,Math.max(12,bw*r.pct/100),12,6,6,"F");}
-      ink(INK);doc.setFontSize(14);doc.text(r.pct+"%",W-M,y,{align:"right"});
-      doc.setFont("helvetica","normal");doc.setFontSize(8.5);ink(GREY);doc.text(r.detail,bx,y+13);
+      if(r.r>0){fill(r.rgb);doc.roundedRect(bx,y-10,Math.max(12,bw*r.r),12,6,6,"F");}
+      
+      doc.setFont("helvetica","normal");doc.setFontSize(8.5);ink(GREY);doc.text(r.topics.length?"Coincides en: "+r.topics.join(", ").toLowerCase():"Sin coincidencias",bx,y+13);
       y+=10;
     });
     // Respuestas
@@ -805,6 +815,78 @@ a{color:var(--accent)}
   }
   function next(){ if(cur<Q.length-1){cur++;renderQ();} else results(); }
   function results(){
+    var answered=ans.filter(function(a){return a!==null&&a!==0;}).length;
+    var rows=PARTIES.map(function(p){
+      var sc=0,tot=0,tp={};
+      Q.forEach(function(q,i){
+        if(ans[i]===null||ans[i]===0)return;
+        var pos=q.p[p[0]]; if(!pos)return;
+        tot++; if(pos===ans[i]){sc++;tp[q.t]=1;}
+      });
+      return {name:p[0],v:p[1],rgb:p[2],r:tot?sc/tot:0,topics:Object.keys(tp)};
+    });
+    rows=rows.map(function(r,i){return [r,i];}).sort(function(a,b){return (b[0].r-a[0].r)||(a[1]-b[1]);}).map(function(x){return x[0];});
+    var top=rows.filter(function(r){return r.r>0&&Math.abs(r.r-rows[0].r)<1e-9;});
+    last=rows;
+    var names=top.map(function(r){return r.name;});
+    var joined=names.length>1?names.slice(0,-1).join(", ")+" y "+names[names.length-1]:(names[0]||"");
+    lastTop={n:top.length,s:joined};
+    var PAGE="https://a-la-urna.vercel.app/#test", txt="";
+    var html='<div class="progress"><span style="width:100%"></span></div>';
+    if(!top.length){
+      html+='<div class="rhead"><div><small>Test 29N</small><b>Sin resultado</b></div><span aria-hidden="true">29N</span></div>'+
+        '<p class="muted">'+(answered?'Tus respuestas no coinciden con las posiciones de ningún partido.':'No has marcado ninguna respuesta de acuerdo o en desacuerdo, así que no hay nada que comparar.')+'</p>';
+    }else{
+      html+='<div class="rhead"><div><small>'+(top.length>1?'Los que más coinciden con tus respuestas':'El que más coincide con tus respuestas')+'</small><b>'+joined+'</b></div><span aria-hidden="true">29N</span></div>';
+      if(top.length===1&&top[0].topics.length)html+='<p class="detail">Coincidís sobre todo en: '+top[0].topics.join(", ").toLowerCase()+'.</p>';
+      if(answered<10)html+='<p class="detail">Has respondido a pocas afirmaciones, así que el resultado es poco fiable. Cuantas más respondas, mejor.</p>';
+      var rest=rows.slice(top.length);
+      if(rest.length){
+        html+='<h3>El resto, por orden de coincidencia</h3><div class="results">';
+        rest.forEach(function(r,i){
+          html+='<div class="rrow" style="--c:var('+r.v+')"><b>'+r.name+'</b><div class="bar"><span data-r="'+r.r+'" style="transform:scaleX('+r.r+')"></span></div><span class="num">'+(top.length+i+1)+'.º</span></div>';
+        });
+        html+='</div>';
+      }
+      txt="En el test del 29N, "+(top.length>1?"los partidos que más coinciden con mis respuestas son ":"el partido que más coincide con mis respuestas es ")+joined+".";
+      html+='<div class="share"><h3>Guarda o envía tu resultado</h3><p class="sharetxt" id="shareTxt"></p>'+
+        '<div class="sharebtns"><button type="button" class="btn primary" id="pdfBtn">Descargar PDF</button><button type="button" class="btn" id="copyBtn">Copiar texto</button>'+
+        '<a class="btn" id="waBtn" target="_blank" rel="noopener">WhatsApp</a>'+
+        '<a class="btn" id="tgBtn" target="_blank" rel="noopener">Telegram</a></div></div>';
+    }
+    html+='<p class="disclaimer">Este test simplifica posiciones complejas y se basa en lo que los partidos han dicho en público, no en sus programas completos. Coincidir en estas afirmaciones no es una recomendación de voto: el voto es tuyo.</p>'+
+      '<div class="qnav"><button type="button" class="btn primary" id="restart">Repetir el test</button></div>';
+    quiz.innerHTML=html;
+    if(!reduce){var bars=quiz.querySelectorAll(".rrow .bar span");bars.forEach(function(b){b.style.transition="none";b.style.transform="scaleX(0)";});
+      requestAnimationFrame(function(){requestAnimationFrame(function(){bars.forEach(function(b,i){b.style.transition="transform 1.1s cubic-bezier(.2,.7,.2,1) "+(i*90)+"ms";b.style.transform="scaleX("+b.dataset.r+")";});});});}
+    if(!reduce&&top.length){
+      var rain=document.createElement("div");rain.className="rain";rain.setAttribute("aria-hidden","true");
+      for(var k=0;k<26;k++){var f=document.createElement("i");f.style.left=(Math.random()*100)+"%";
+        f.style.animationDuration=(1.6+Math.random()*1.6)+"s";f.style.animationDelay=(Math.random()*.9)+"s";
+        f.style.setProperty("--rot",(Math.random()*720-360)+"deg");rain.appendChild(f);}
+      document.body.appendChild(rain);setTimeout(function(){rain.remove();},4500);
+    }
+    if(txt){
+      var full=txt+" Haz el tuyo: "+PAGE, st=document.getElementById("shareTxt");
+      st.textContent=full;
+      document.getElementById("waBtn").href="https://wa.me/?text="+encodeURIComponent(full);
+      document.getElementById("tgBtn").href="https://t.me/share/url?url="+encodeURIComponent(PAGE)+"&text="+encodeURIComponent(txt);
+      document.getElementById("pdfBtn").addEventListener("click",function(){
+        var b=this,okPdf=false;
+        try{okPdf=makePdf();}catch(e){okPdf=false;}
+        b.textContent=okPdf?"Creando PDF…":"No se pudo crear el PDF";
+        setTimeout(function(){b.textContent="Descargar PDF";},2500);
+      });
+      document.getElementById("copyBtn").addEventListener("click",function(){
+        var b=this;
+        function ok(){b.textContent="Copiado";setTimeout(function(){b.textContent="Copiar texto";},1800);}
+        function sel(){var r=document.createRange();r.selectNodeContents(st);var s=window.getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Texto seleccionado";}
+        try{navigator.clipboard.writeText(full).then(ok,sel);}catch(e){sel();}
+      });
+    }
+    document.getElementById("restart").addEventListener("click",function(){ans.fill(null);cur=0;renderQ();});
+  }
+  function resultsOld(){
     last=[];
     var score={},total={},byTopic={};
     PARTIES.forEach(function(p){score[p[0]]=0;total[p[0]]=0;byTopic[p[0]]={};});
@@ -909,5 +991,4 @@ a{color:var(--accent)}
 })();
 </script>
 
-</body>
-</html>
+</body></html>
