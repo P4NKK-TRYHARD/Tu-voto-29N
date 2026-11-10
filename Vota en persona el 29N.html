@@ -1,0 +1,840 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Vota en persona el 29N</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;600;700&display=swap">
+<style>
+/* Layout: cartel electoral. Bandas a todo el ancho (sepia de papeleta del Senado, tinta, papel) con titulares condensados gigantes y una urna animada en el hero */
+:root{
+  --paper:#f6f6f3; --ink:#16162e; --muted:#5d5d73; --line:#dcdbe3; --card:#ffffff;
+  --sepia:#e9c9a0; --sepia-deep:#d6ae78; --on-sepia:#2a1d0c;
+  --band:#16162e; --on-band:#f3ead9; --band-line:#34345a;
+  --accent:#0b7f86; --accent-soft:#d9eeee; --on-accent:#ffffff; --env:#ffffff;
+  --psoe:#d9322b; --pp:#1d6fd1; --vox:#4f9a2e; --sumar:#c23a7d; --podemos:#6b3fa0;
+  --display:"Archivo","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#111119; --ink:#ecebf3; --muted:#a09fb5; --line:#2b2b3d; --card:#1a1a27;
+  --sepia:#4a3a22; --sepia-deep:#6a5330; --on-sepia:#f4e2c4;
+  --band:#08080f; --on-band:#f3ead9; --band-line:#2a2a44;
+  --accent:#4fc5cc; --accent-soft:#143236; --on-accent:#06262a; --env:#e9e7f2;
+  --psoe:#ff6b63; --pp:#5ea2ff; --vox:#7fcb5a; --sumar:#ff78b8; --podemos:#b48cf0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111119; --ink:#ecebf3; --muted:#a09fb5; --line:#2b2b3d; --card:#1a1a27;
+  --sepia:#4a3a22; --sepia-deep:#6a5330; --on-sepia:#f4e2c4;
+  --band:#08080f; --on-band:#f3ead9; --band-line:#2a2a44;
+  --accent:#4fc5cc; --accent-soft:#143236; --on-accent:#06262a; --env:#e9e7f2;
+  --psoe:#ff6b63; --pp:#5ea2ff; --vox:#7fcb5a; --sumar:#ff78b8; --podemos:#b48cf0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--body);overflow-x:hidden}
+.wrap{max-width:940px;margin:0 auto;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+h2{font-size:clamp(2.1rem,7.5vw,3.6rem);font-weight:900;font-stretch:68%;line-height:.98;text-transform:uppercase;letter-spacing:-.005em}
+h3{font-size:1.05rem;font-weight:800;font-stretch:100%}
+p{margin:0}
+.eyebrow{font:700 .78rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.sec{padding-block:64px}
+.sec .wrap{display:flex;flex-direction:column;gap:20px}
+.intro{max-width:60ch}
+button{font-family:var(--body)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* ---------- Hero ---------- */
+.hero{background:var(--sepia);color:var(--on-sepia);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(circle at 85% 20%, var(--sepia-deep) 0, transparent 46%),
+  repeating-linear-gradient(-45deg, transparent 0 22px, var(--sepia-deep) 22px 23px);opacity:.45;pointer-events:none}
+.hero .wrap{position:relative;padding-block:44px 52px;display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:end}
+.hero .eyebrow{color:var(--on-sepia)}
+.htext{display:flex;flex-direction:column;gap:14px;min-width:0}
+.big{font-family:var(--display);font-weight:900;font-stretch:62%;font-size:clamp(7rem,31vw,17rem);line-height:.8;letter-spacing:-.03em;margin:6px 0 0 -.04em}
+h1{font-size:clamp(1.9rem,6.4vw,3.3rem);font-weight:900;font-stretch:68%;line-height:.98;text-transform:uppercase}
+.lead{font-size:1.12rem;max-width:38ch}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.nav button{font-weight:700;font-size:.95rem;padding:10px 16px;border-radius:999px;border:2px solid var(--on-sepia);background:transparent;color:var(--on-sepia);cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.nav button:hover{background:var(--on-sepia);color:var(--sepia);transform:translateY(-2px)}
+.nav button.go{background:var(--on-sepia);color:var(--sepia)}
+
+.nav a{font-weight:700;font-size:.95rem;padding:10px 16px;border-radius:999px;border:2px solid var(--on-sepia);color:var(--on-sepia);text-decoration:none;transition:background .2s,color .2s,transform .2s}
+.nav a:hover,.nav a.go{background:var(--on-sepia);color:var(--sepia)}
+.nav a:hover{transform:translateY(-2px)}
+
+/* Barra de páginas */
+.topbar{background:var(--band);color:var(--on-band)}
+.topbar .wrap{display:flex;align-items:center;gap:6px;padding-block:10px;overflow-x:auto;scrollbar-width:none}
+.topbar a{flex:none;color:var(--on-band);text-decoration:none;font-weight:700;font-size:.92rem;padding:7px 14px;border-radius:999px;border:2px solid transparent;transition:border-color .2s}
+.topbar a:hover{border-color:var(--on-band)}
+.topbar a.logo{font:900 1.7rem/1 var(--display);font-stretch:62%;padding:0 10px 0 0;border:0}
+.topbar a[aria-current="page"]{background:var(--on-band);color:var(--band)}
+#como-votar,#datos,#propuestas,#test{min-height:78vh}
+
+/* Menú de inicio */
+.menu{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.menu a{display:flex;flex-direction:column;gap:8px;min-width:0;min-height:170px;padding:22px;border-radius:16px;text-decoration:none;color:var(--ink);background:var(--card);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--sepia-deep);transition:transform .2s,box-shadow .2s}
+.menu a:hover{transform:translate(-3px,-3px);box-shadow:10px 10px 0 var(--sepia-deep)}
+.menu b{font:900 clamp(1.8rem,5vw,2.5rem)/1 var(--display);font-stretch:68%;text-transform:uppercase}
+.menu span{color:var(--muted)}
+.menu i{font-style:normal;font-weight:700;color:var(--accent);margin-top:auto}
+.menu a.dark{background:var(--band);color:var(--on-band)}
+.menu a.dark span,.menu a.dark i{color:var(--on-band);opacity:.85}
+@media (max-width:760px){.menu{grid-template-columns:1fr}.menu a{min-height:0}}
+@media (prefers-reduced-motion:no-preference){.view-in{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}}
+
+/* Urna */
+.urnbox{display:flex;justify-content:center;min-width:0}
+.urn{position:relative;width:230px;max-width:100%;height:250px}
+.urn .lid{position:absolute;left:0;right:0;top:58px;height:16px;border-radius:4px;background:var(--on-sepia)}
+.urn .lid::after{content:"";position:absolute;left:28%;right:28%;top:5px;height:6px;border-radius:3px;background:var(--sepia)}
+.urn .glass{position:absolute;left:10px;right:10px;top:74px;bottom:0;border:4px solid var(--on-sepia);border-top:0;border-radius:0 0 10px 10px;
+  background:linear-gradient(120deg, rgba(255,255,255,.42), rgba(255,255,255,.1) 55%, rgba(255,255,255,.28));overflow:hidden}
+.envl{position:absolute;width:112px;height:66px;border-radius:4px;background:var(--env);border:2px solid var(--on-sepia);left:50%;margin-left:-56px}
+.envl::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(to bottom right, transparent 49%, var(--on-sepia) 49% 51%, transparent 51%) left top/50% 62% no-repeat,
+  linear-gradient(to bottom left, transparent 49%, var(--on-sepia) 49% 51%, transparent 51%) right top/50% 62% no-repeat;opacity:.55}
+.envl.s{background:var(--sepia-deep)}
+.e1{bottom:10px;--r:-9deg;--x:-34px;transform:translateX(var(--x)) rotate(var(--r))}
+.e2{bottom:22px;--r:11deg;--x:30px;transform:translateX(var(--x)) rotate(var(--r))}
+.e3{bottom:58px;--r:-3deg;--x:-4px;transform:translateX(var(--x)) rotate(var(--r))}
+@media (prefers-reduced-motion:no-preference){
+  .envl{animation:drop 7s cubic-bezier(.3,.7,.3,1) infinite both}
+  .e2{animation-delay:.9s}.e3{animation-delay:1.8s}
+  @keyframes drop{
+    0%{transform:translate(0,-260px) rotate(0);opacity:0}
+    6%{opacity:1}
+    22%{transform:translateX(var(--x)) translateY(6px) rotate(var(--r))}
+    27%,88%{transform:translateX(var(--x)) rotate(var(--r));opacity:1}
+    100%{transform:translateX(var(--x)) rotate(var(--r));opacity:0}}
+  .htext > *{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+  .htext > *:nth-child(2){animation-delay:.07s}.htext > *:nth-child(3){animation-delay:.16s}
+  .htext > *:nth-child(4){animation-delay:.24s}.htext > *:nth-child(5){animation-delay:.32s}
+  @keyframes rise{from{opacity:.001;transform:translateY(22px)}to{opacity:1;transform:none}}
+  .reveal{transition:transform .7s cubic-bezier(.2,.7,.2,1), opacity .7s}
+  .reveal.pending{transform:translateY(26px);opacity:.3}
+}
+
+/* ---------- Animaciones extra ---------- */
+.menu i{display:inline-block;transition:transform .2s}
+.rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:20}
+.rain i{position:absolute;top:-80px;width:54px;height:34px;border-radius:3px;background:var(--env);border:2px solid var(--ink)}
+.rain i:nth-child(3n){background:var(--sepia-deep)}
+@media (prefers-reduced-motion:no-preference){
+  .big span{display:inline-block;animation:pop .9s cubic-bezier(.2,1.5,.4,1) both}
+  .big span:nth-child(2){animation-delay:.14s}.big span:nth-child(3){animation-delay:.28s}
+  @keyframes pop{from{opacity:.001;transform:translateY(60%) rotate(-10deg) scale(.6)}to{opacity:1;transform:none}}
+  .hero::before{inset:0 -40px;animation:slide 6s linear infinite}
+  @keyframes slide{to{transform:translateX(32.53px)}}
+  .urn{animation:bob 5s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(-9px) rotate(-1.5deg)}}
+  .count strong.flip{animation:flip .45s cubic-bezier(.2,.7,.2,1)}
+  @keyframes flip{from{transform:translateY(-40%) scaleY(.5);opacity:.15}to{transform:none;opacity:1}}
+  .stagger > *{animation:rise .65s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i,0)*90ms + 120ms)}
+  .menu a:hover i{transform:translateX(10px)}
+  .steps li{transition:transform .25s}
+  .steps li:hover{transform:translateY(-6px)}
+  .steps li::before{transition:color .3s}
+  .steps li:hover::before{color:var(--accent)}
+  .fields div{transition:background .25s}
+  .fields div:hover{background:var(--accent-soft)}
+  .chuleta{transition:transform .25s,box-shadow .25s}
+  .chuleta:hover{transform:translate(-3px,-3px);box-shadow:12px 12px 0 var(--sepia-deep)}
+  .stat{transition:transform .25s}
+  .stat:hover{transform:translateY(-4px)}
+  .chip{animation:chipin .5s .6s cubic-bezier(.2,1.7,.4,1) both}
+  @keyframes chipin{from{transform:scale(0)}to{transform:none}}
+  .opt:active{transform:scale(.94)}
+  .cta h2{animation:pulse 3.2s ease-in-out infinite;transform-origin:left center}
+  @keyframes pulse{50%{transform:scale(1.025)}}
+  .rain i{animation:fall linear forwards}
+  @keyframes fall{to{transform:translateY(120vh) rotate(var(--rot))}}
+}
+
+/* ---------- Bloques de contenido ---------- */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);border-block:2px solid var(--ink)}
+.nums div{padding:18px 14px;border-right:1px dashed var(--line);min-width:0}
+.nums div:last-child{border-right:0}
+.nums strong{display:block;font:900 clamp(2.6rem,8vw,4.2rem)/1 var(--display);font-stretch:66%;font-variant-numeric:tabular-nums}
+.nums span{font-size:.92rem;color:var(--muted)}
+.peek{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.peek a{display:flex;flex-direction:column;gap:4px;min-width:0;padding:16px;border-radius:14px;background:var(--card);border:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.peek a:hover{border-color:var(--ink)}
+.peek small{font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.peek b{font:900 clamp(2rem,6vw,2.7rem)/1 var(--display);font-stretch:66%;font-variant-numeric:tabular-nums}
+.peek span{font-size:.88rem;color:var(--muted)}
+.oneeach{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.mini{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.mini .who{align-self:flex-start;font:900 .95rem var(--display);font-stretch:80%;letter-spacing:.04em;text-transform:uppercase;color:var(--c);border:2px solid var(--c);border-radius:8px;padding:2px 8px}
+.mini p{font-size:.94rem}
+.more{align-self:flex-start;font-weight:700;color:var(--accent);text-decoration:none}
+.more:hover{text-decoration:underline}
+.sample{font:800 clamp(1.35rem,4.6vw,2rem)/1.2 var(--display);font-stretch:85%;max-width:28ch;border-left:6px solid var(--sepia-deep);padding-left:18px}
+.btnlink{align-self:flex-start;background:var(--on-band);color:var(--band);font-weight:700;padding:12px 22px;border-radius:999px;text-decoration:none}
+.why{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 28px;list-style:none;padding:0;margin:0}
+.why li{border-top:3px solid var(--ink);padding-top:10px;min-width:0}
+.why b{display:block;font:800 1.12rem/1.2 var(--display)}
+.why p{color:var(--muted);font-size:.96rem;margin-top:4px}
+.faq{display:flex;flex-direction:column;border-top:2px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq summary{cursor:pointer;font:800 1.1rem/1.25 var(--display);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;font-size:1.5rem;line-height:1;color:var(--accent)}
+.faq details[open] summary::after{content:"−"}
+.faq p{color:var(--muted);margin-top:8px;max-width:65ch}
+.sub{font:900 clamp(1.5rem,5vw,2.2rem)/1 var(--display);font-stretch:68%;text-transform:uppercase;margin-top:28px}
+@media (min-width:761px){.urnbox{transform:scale(1.4);transform-origin:bottom center}}
+@media (max-width:760px){
+  .nums,.peek{grid-template-columns:1fr 1fr}
+  .nums div:nth-child(2){border-right:0}
+  .nums div:nth-child(-n+2){border-bottom:1px dashed var(--line)}
+  .oneeach{grid-template-columns:1fr 1fr}
+  .why{grid-template-columns:1fr}
+}
+@media (max-width:430px){.oneeach{grid-template-columns:1fr}}
+
+/* ---------- Ticker ---------- */
+.ticker{background:var(--band);color:var(--on-band);overflow:hidden;white-space:nowrap;padding-block:12px;font:800 1rem var(--display);font-stretch:75%;letter-spacing:.08em;text-transform:uppercase}
+.ticker div{display:inline-flex;gap:0}
+.ticker span{padding-right:2.2rem}
+.ticker span::after{content:"✕";margin-left:2.2rem;color:var(--sepia-deep)}
+@media (prefers-reduced-motion:no-preference){.ticker div{animation:tick 36s linear infinite}@keyframes tick{to{transform:translateX(-50%)}}}
+
+/* ---------- Cuenta atrás ---------- */
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-variant-numeric:tabular-nums}
+.count div{background:var(--band);color:var(--on-band);border-radius:10px;padding:16px 8px 12px;text-align:center;position:relative;overflow:hidden}
+.count div::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--band-line)}
+.count strong{display:block;font-family:var(--display);font-stretch:66%;font-size:clamp(2.6rem,11vw,5.2rem);font-weight:900;line-height:1}
+.count small{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+
+/* ---------- Chuleta + pasos ---------- */
+.chuleta{background:var(--card);border:2px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:8px 8px 0 var(--sepia-deep)}
+.chuleta header{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 18px;background:var(--ink);color:var(--paper);font:800 .9rem var(--display);letter-spacing:.1em;text-transform:uppercase}
+.fields{display:grid;grid-template-columns:repeat(3,1fr)}
+.fields div{padding:16px 18px;border-right:1px dashed var(--line);border-bottom:1px dashed var(--line);min-width:0}
+.fields small{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fields strong{font-family:var(--display);font-stretch:85%;font-size:1.15rem;font-weight:800;line-height:1.2}
+.steps{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+.steps li{counter-increment:s;display:flex;flex-direction:column;gap:6px;min-width:0;border-top:3px solid var(--ink);padding-top:10px}
+.steps li::before{content:counter(s);font-family:var(--display);font-stretch:62%;font-weight:900;font-size:4.2rem;line-height:.9;color:transparent;-webkit-text-stroke:2px var(--accent)}
+.steps b{font-family:var(--display);font-size:1.08rem;line-height:1.2}
+.steps p{color:var(--muted);font-size:.96rem}
+
+/* ---------- Tabs ---------- */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none}
+.tabs button{flex:none;font-weight:700;font-size:.95rem;color:var(--ink);background:transparent;border:2px solid var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.tabs button:hover{transform:translateY(-2px)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+
+/* ---------- Datos ---------- */
+.datos{background:var(--accent-soft)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.stat{background:var(--card);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0;border:1px solid var(--line)}
+.stat.wide{grid-column:1/-1}
+.stat .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.chip{flex:none;font:800 .9rem var(--display);font-variant-numeric:tabular-nums;padding:4px 10px;border-radius:999px;background:var(--ink);color:var(--paper);white-space:nowrap}
+.hero-num{font-family:var(--display);font-stretch:66%;font-weight:900;font-size:clamp(2.6rem,9vw,3.8rem);line-height:.95;font-variant-numeric:tabular-nums}
+.hero-num small{font:600 .85rem var(--body);color:var(--muted);letter-spacing:.06em;margin-left:6px}
+.pair{display:grid;grid-template-columns:2.8rem 1fr auto;align-items:center;gap:10px;font-variant-numeric:tabular-nums}
+.pair .yr{font-weight:700;font-size:.85rem;color:var(--muted)}
+.bar{height:14px;border-radius:7px;background:var(--accent-soft);overflow:hidden}
+.bar span{display:block;height:100%;border-radius:7px;background:var(--muted);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.pair.now .bar span{background:var(--accent)}
+.pair .val{font-weight:700;font-size:.95rem;text-align:right;min-width:6ch}
+.stat .note{font-size:.92rem;color:var(--muted)}
+.stat .src{font-size:.78rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+
+/* ---------- Propuestas ---------- */
+.callout{border:2px dashed var(--ink);border-radius:12px;padding:14px 16px;font-size:.95rem;max-width:70ch}
+.props{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.prop{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0;transition:transform .25s, box-shadow .25s}
+.prop:last-child:nth-child(odd){grid-column:1/-1}
+.prop:hover{transform:translateY(-4px);box-shadow:0 14px 30px -20px var(--c)}
+.prop .who{align-self:flex-start;font:900 1.05rem var(--display);font-stretch:80%;letter-spacing:.04em;text-transform:uppercase;color:var(--c);border:2px solid var(--c);border-radius:8px;padding:2px 10px}
+.prop ul{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:6px}
+.prop li{font-size:.97rem}
+.prop li::marker{color:var(--c)}
+
+/* ---------- Test ---------- */
+.test{background:var(--band);color:var(--on-band)}
+.test .eyebrow{color:var(--sepia-deep)}
+.test .muted{color:var(--on-band);opacity:.8}
+.quiz{background:var(--card);color:var(--ink);border-radius:18px;padding:clamp(18px,4vw,32px);display:flex;flex-direction:column;gap:18px;max-width:720px}
+.progress{height:8px;border-radius:4px;background:var(--accent-soft);overflow:hidden}
+.progress span{display:block;height:100%;background:var(--accent);transition:width .45s cubic-bezier(.2,.7,.2,1)}
+.qmeta{display:flex;justify-content:space-between;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.qtext{font-family:var(--display);font-stretch:85%;font-size:clamp(1.3rem,4.6vw,1.8rem);font-weight:800;line-height:1.18;min-height:3.6em;margin-top:8px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.opt{font-weight:700;font-size:1rem;padding:16px 8px;border-radius:12px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:transform .15s,background .15s,color .15s}
+.opt:hover{transform:translateY(-3px);background:var(--accent-soft)}
+.opt.sel{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.qnav{display:flex;justify-content:space-between;gap:8px}
+.btn{font-weight:700;font-size:.95rem;padding:10px 18px;border-radius:999px;border:2px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:default}
+@media (prefers-reduced-motion:no-preference){.qcard{animation:qin .4s cubic-bezier(.2,.7,.2,1) both}@keyframes qin{from{opacity:.001;transform:translateX(24px)}to{opacity:1;transform:none}}}
+.results{display:flex;flex-direction:column;gap:10px}
+.rrow{display:grid;grid-template-columns:5.8rem 1fr 3.4rem;gap:10px;align-items:center;font-variant-numeric:tabular-nums}
+.rrow b{font:900 1rem var(--display);font-stretch:80%;text-transform:uppercase;color:var(--c)}
+.rrow .bar{height:18px;border-radius:9px}
+.rrow .bar span{background:var(--c);border-radius:9px}
+.rrow .num{text-align:right;font:900 1.1rem var(--display)}
+.detail{font-size:.9rem;color:var(--muted)}
+.share{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:10px}
+.sharetxt{background:var(--accent-soft);border-radius:10px;padding:12px 14px;font-size:.95rem;overflow-wrap:anywhere;user-select:all;-webkit-user-select:all}
+.sharebtns{display:flex;flex-wrap:wrap;gap:8px}
+a.btn{text-decoration:none}
+.disclaimer{font-size:.88rem;color:var(--muted)}
+
+/* ---------- Cierre ---------- */
+.cta{background:var(--sepia);color:var(--on-sepia);text-align:left}
+.cta h2{font-size:clamp(2.6rem,11vw,6rem)}
+.cta p{max-width:44ch;font-size:1.1rem}
+footer{padding-block:28px 48px;color:var(--muted);font-size:.86rem}
+footer .wrap{display:flex;flex-direction:column;gap:8px}
+a{color:var(--accent)}
+
+@media (max-width:760px){
+  .hero .wrap{grid-template-columns:1fr;padding-block:32px 40px}
+  .urnbox{justify-content:flex-start}
+  .urn{height:220px;width:200px}
+  .steps{grid-template-columns:1fr 1fr}
+  .fields{grid-template-columns:1fr 1fr}
+  .stats,.props{grid-template-columns:1fr}
+  .sec{padding-block:48px}
+}
+@media (max-width:430px){
+  .opts{grid-template-columns:1fr}
+  .qtext{min-height:0}
+  .steps{grid-template-columns:1fr}
+  .count{gap:6px}
+}
+</style>
+
+<nav class="topbar" id="topbar" aria-label="Páginas" hidden>
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Inicio">29N</a>
+    <a href="#inicio">Inicio</a>
+    <a href="#como-votar">Cómo votar</a>
+    <a href="#datos">2018 vs 2026</a>
+    <a href="#propuestas">Propuestas</a>
+    <a href="#test">Test</a>
+  </div>
+</nav>
+
+<header class="hero" data-view="inicio">
+  <div class="wrap">
+    <div class="htext">
+      <p class="eyebrow">Elecciones generales · Domingo 29 de noviembre de 2026</p>
+      <div class="big" aria-hidden="true"><span>2</span><span>9</span><span>N</span></div>
+      <h1>Ve a tu colegio y vota en persona</h1>
+      <p class="lead">Infórmate con datos, mira qué propone cada partido y decide tú. Luego, dos papeletas y unos minutos de tu domingo.</p>
+      <nav class="nav" aria-label="Secciones">
+        <a class="go" href="#como-votar">Cómo votar</a>
+        <a href="#datos">2018 vs 2026</a>
+        <a href="#propuestas">Propuestas</a>
+        <a href="#test">Haz el test</a>
+      </nav>
+    </div>
+    <div class="urnbox" aria-hidden="true">
+      <div class="urn">
+        <div class="lid"></div>
+        <div class="glass">
+          <div class="envl e1"></div>
+          <div class="envl s e2"></div>
+          <div class="envl e3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true" data-view="inicio"><div>
+  <span>Domingo 29 de noviembre</span><span>Colegios abiertos de 9:00 a 20:00</span><span>Lleva tu DNI</span><span>Papeleta blanca: Congreso</span><span>Papeleta sepia: Senado</span><span>Tu voto, a la urna</span>
+  <span>Domingo 29 de noviembre</span><span>Colegios abiertos de 9:00 a 20:00</span><span>Lleva tu DNI</span><span>Papeleta blanca: Congreso</span><span>Papeleta sepia: Senado</span><span>Tu voto, a la urna</span>
+</div></div>
+
+<section class="sec" aria-label="Cuenta atrás" data-view="inicio">
+  <div class="wrap reveal">
+    <p class="eyebrow">Faltan para que abran los colegios</p>
+    <div class="count stagger">
+      <div><strong id="cd">--</strong><small>días</small></div>
+      <div><strong id="ch">--</strong><small>horas</small></div>
+      <div><strong id="cm">--</strong><small>min</small></div>
+      <div><strong id="cs">--</strong><small>seg</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" data-view="inicio" style="padding-top:0">
+  <div class="wrap reveal">
+    <p class="eyebrow">Páginas</p>
+    <h2>Elige por dónde empezar</h2>
+    <div class="menu stagger">
+      <a href="#como-votar"><b>Cómo votar</b><span>Horario, qué llevar y los cuatro pasos para votar en tu colegio.</span><i>Abrir →</i></a>
+      <a href="#datos"><b>2018 vs 2026</b><span>Inmigración, vivienda, empleo, pensiones y delitos, en cifras oficiales.</span><i>Abrir →</i></a>
+      <a href="#propuestas"><b>Propuestas</b><span>Qué plantea cada partido, tema a tema.</span><i>Abrir →</i></a>
+      <a class="dark" href="#test"><b>Haz el test</b><span>12 afirmaciones para ver con quién coincides.</span><i>Empezar →</i></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="como-votar" data-view="como-votar">
+  <div class="wrap reveal">
+    <p class="eyebrow">Cómo votar</p>
+    <h2>Todo lo que necesitas, en una chuleta</h2>
+    <div class="chuleta">
+      <header><span>Chuleta del votante</span><span>29N · 2026</span></header>
+      <div class="fields stagger">
+        <div><small>Día</small><strong>Domingo 29 de noviembre</strong></div>
+        <div><small>Horario</small><strong>De 9:00 a 20:00</strong></div>
+        <div><small>Canarias</small><strong>Una hora menos</strong></div>
+        <div><small>Documento</small><strong>DNI, pasaporte o carné de conducir</strong></div>
+        <div><small>Tarjeta censal</small><strong>No es obligatoria</strong></div>
+        <div><small>Papeletas</small><strong>Las tienes en el colegio</strong></div>
+      </div>
+    </div>
+    <ol class="steps stagger">
+      <li><b>Consulta tu colegio y tu mesa</b><p>Viene en la tarjeta censal que llega a casa. También está en la web del INE y en tu ayuntamiento.</p></li>
+      <li><b>Coge tus papeletas</b><p>Están en el colegio. También puedes llevarlas de casa si te las han enviado los partidos.</p></li>
+      <li><b>Prepara los sobres</b><p>La blanca del Congreso va en su sobre. En la sepia del Senado marca con una cruz a quien quieras, hasta el máximo que indica.</p></li>
+      <li><b>Identifícate y vota</b><p>Enseña tu documento original con foto y entrega los sobres a la presidencia de la mesa, que los mete en la urna.</p></li>
+    </ol>
+    <h3 class="sub">Preguntas frecuentes</h3>
+    <div class="faq">
+      <details><summary>¿Puedo votar sin la tarjeta censal?</summary><p>Sí. La tarjeta solo te dice cuál es tu colegio y tu mesa. Para votar basta con identificarte y estar en el censo.</p></details>
+      <details><summary>¿Vale el DNI caducado?</summary><p>Sí. Sirven el DNI, el pasaporte o el carné de conducir con foto aunque estén caducados, siempre que sean los originales. No valen fotocopias.</p></details>
+      <details><summary>¿Y si llego justo a las 20:00?</summary><p>Si a las 20:00 ya estás dentro del colegio o en la cola de acceso, puedes votar. Aun así, mejor no apurar.</p></details>
+      <details><summary>¿Cuántos senadores puedo marcar?</summary><p>En las provincias peninsulares, hasta tres. En las islas, Ceuta y Melilla son menos. La propia papeleta sepia indica el máximo.</p></details>
+      <details><summary>¿Qué diferencia hay entre voto en blanco y voto nulo?</summary><p>En blanco es un sobre vacío, o una papeleta del Senado sin marcar: es un voto válido que no va a ninguna candidatura. Nulo es el que lleva papeletas de candidaturas distintas en el mismo sobre, o papeletas rotas o con tachaduras: no cuenta en el reparto.</p></details>
+      <details><summary>Trabajo ese domingo, ¿puedo ir a votar?</summary><p>Sí. Si tu jornada coincide con el horario de votación tienes derecho a un permiso retribuido de hasta cuatro horas, según cuánto coincida. Pídelo a tu empresa con antelación.</p></details>
+      <details><summary>Necesito ayuda para votar, ¿puede acompañarme alguien?</summary><p>Sí. Quien no pueda leer o tenga una discapacidad que le impida elegir la papeleta o entregarla puede servirse de una persona de su confianza.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec datos" id="datos" data-view="datos">
+  <div class="wrap reveal">
+    <p class="eyebrow">Antes y ahora</p>
+    <h2>España en 2018 y en 2026, en cifras</h2>
+    <p class="intro">Desde junio de 2018 gobierna Pedro Sánchez. Así han cambiado algunos datos oficiales en este tiempo. Son cifras, no valoraciones: muchas dependen también de la economía mundial, la pandemia o la guerra de Ucrania.</p>
+    <div class="tabs" role="tablist" id="dataTabs"></div>
+    <div id="dataPanel" class="stats" role="tabpanel"></div>
+  </div>
+</section>
+
+<section class="sec" id="propuestas" data-view="propuestas">
+  <div class="wrap reveal">
+    <p class="eyebrow">Qué proponen</p>
+    <h2>Las propuestas de cada partido, tema a tema</h2>
+    <div class="callout">Ningún partido había publicado aún su programa completo a 10 de noviembre. Esto resume sus posiciones públicas, medidas anunciadas y programas anteriores. Consulta los programas oficiales cuando salgan.</div>
+    <div class="tabs" role="tablist" id="propTabs"></div>
+    <div id="propPanel" class="props" role="tabpanel"></div>
+  </div>
+</section>
+
+<section class="sec test" id="test" data-view="test">
+  <div class="wrap reveal">
+    <p class="eyebrow">Test</p>
+    <h2>¿Con quién coincides?</h2>
+    <p class="muted intro">12 afirmaciones. Responde lo que piensas y verás en qué coincides con cada partido. No es una recomendación de voto: es una ayuda para comparar.</p>
+    <div class="quiz" id="quiz"></div>
+  </div>
+</section>
+
+<section class="sec" data-view="inicio" style="padding-top:0">
+  <div class="wrap reveal">
+    <p class="eyebrow">Qué se elige</p>
+    <h2>Las elecciones, en números</h2>
+    <div class="nums">
+      <div><strong>350</strong><span>diputados en el Congreso</span></div>
+      <div><strong>176</strong><span>escaños para la mayoría absoluta</span></div>
+      <div><strong>208</strong><span>senadores elegidos en las urnas</span></div>
+      <div><strong>52</strong><span>circunscripciones: 50 provincias, Ceuta y Melilla</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec datos" data-view="inicio">
+  <div class="wrap reveal">
+    <p class="eyebrow">Antes y ahora</p>
+    <h2>Un vistazo a los datos</h2>
+    <p class="intro">Cuatro cifras oficiales de 2018 a hoy. Unas han mejorado y otras han empeorado: míralas todas antes de decidir.</p>
+    <div class="peek">
+      <a href="#datos"><small>Paro</small><b>10,18%</b><span>Era el 14,55% en 2018</span></a>
+      <a href="#datos"><small>Comprar vivienda</small><b>+74%</b><span>Precio por m² desde 2018</span></a>
+      <a href="#datos"><small>Llegadas irregulares</small><b>−43%</b><span>2025 frente a 2018</span></a>
+      <a href="#datos"><small>Salario mínimo</small><b>1.221 €</b><span>Eran 735,90 € en 2018</span></a>
+    </div>
+    <a class="more" href="#datos">Ver todos los datos →</a>
+  </div>
+</section>
+
+<section class="sec" data-view="inicio">
+  <div class="wrap reveal">
+    <p class="eyebrow">Qué proponen</p>
+    <h2>Una propuesta de cada partido en vivienda</h2>
+    <div class="oneeach">
+      <div class="mini" style="--c:var(--psoe)"><div class="who">PSOE</div><p>Empresa estatal de vivienda y vivienda protegida para siempre.</p></div>
+      <div class="mini" style="--c:var(--pp)"><div class="who">PP</div><p>Construir un millón de viviendas en cuatro años.</p></div>
+      <div class="mini" style="--c:var(--vox)"><div class="who">Vox</div><p>Liberalizar suelo y reducir trabas a la construcción.</p></div>
+      <div class="mini" style="--c:var(--sumar)"><div class="who">Sumar</div><p>Prohibir que fondos y empresas compren vivienda.</p></div>
+      <div class="mini" style="--c:var(--podemos)"><div class="who">Podemos</div><p>Bajar por ley un 40% los alquileres.</p></div>
+    </div>
+    <a class="more" href="#propuestas">Ver inmigración, empleo, impuestos, pensiones y delitos →</a>
+  </div>
+</section>
+
+<section class="sec test" data-view="inicio">
+  <div class="wrap reveal">
+    <p class="eyebrow">Test</p>
+    <h2>¿Con quién coincides?</h2>
+    <p class="sample">“El Estado debe limitar por ley el precio de los alquileres.”</p>
+    <p class="muted intro">¿De acuerdo o en desacuerdo? Responde a 12 afirmaciones como esta y compara tus respuestas con la posición de cada partido.</p>
+    <a class="btnlink" href="#test">Empezar el test →</a>
+  </div>
+</section>
+
+<section class="sec" data-view="inicio">
+  <div class="wrap reveal">
+    <p class="eyebrow">En persona</p>
+    <h2>Por qué ir a tu colegio</h2>
+    <ul class="why">
+      <li><b>No hay que pedir nada antes</b><p>Te presentas con tu documento y votas. Sin trámites ni plazos.</p></li>
+      <li><b>Decides hasta el último momento</b><p>Puedes cambiar de idea hasta que entregas el sobre.</p></li>
+      <li><b>Ves tu voto entrar en la urna</b><p>La presidencia de la mesa lo introduce delante de ti.</p></li>
+      <li><b>El recuento es público</b><p>Al cerrar a las 20:00, cualquiera puede quedarse a ver cómo se cuentan los votos de su mesa.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec cta" data-view="inicio">
+  <div class="wrap reveal">
+    <h2>El domingo 29, a la urna</h2>
+    <p>Elige lo que elijas, ve a tu colegio entre las 9:00 y las 20:00 con tu documento. Son unos minutos.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Fuentes de los datos: INE (EPA y Estadística Continua de Población), Ministerio del Interior (balances de criminalidad e inmigración irregular), Banco de España (deuda pública), Seguridad Social (pensiones), BOE (salario mínimo) e Idealista (precios de vivienda). Las cifras de 2025 y 2026 son provisionales. Euros corrientes, sin descontar la inflación.</p>
+    <p>Confirma tu colegio en <a href="https://www.ine.es" target="_blank" rel="noopener">ine.es</a> y consulta la información electoral oficial en <a href="https://www.infoelectoral.interior.gob.es" target="_blank" rel="noopener">infoelectoral.interior.gob.es</a>.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Navegación ---------- */
+  document.querySelectorAll("[data-go]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var t=document.getElementById(b.dataset.go);
+      if(t)t.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});
+    });
+  });
+
+  /* ---------- Cuenta atrás ---------- */
+  var target = new Date("2026-11-29T09:00:00+01:00").getTime();
+  var el = ["cd","ch","cm","cs"].map(function(i){return document.getElementById(i);});
+  function pad(n){return String(n).padStart(2,"0");}
+  function tick(){
+    var s = Math.floor(Math.max(0,target-Date.now())/1000);
+    var v=[Math.floor(s/86400),Math.floor(s%86400/3600),Math.floor(s%3600/60),s%60];
+    el.forEach(function(e,i){var t=String(i?pad(v[i]):v[i]);if(e.textContent!==t){e.textContent=t;e.classList.remove("flip");void e.offsetWidth;e.classList.add("flip");}});
+  }
+  tick(); setInterval(tick,1000);
+
+  /* ---------- Datos 2018 vs 2026 ---------- */
+  var DATA = {
+    "Inmigración":[
+      {t:"Llegadas irregulares en un año",a:["2018",64298],b:["2025",36775],fmt:"n",
+       note:"2018 fue el récord de la serie. De enero a octubre de 2026 han llegado 32.942 personas, un 8,9% más que en el mismo periodo de 2025 (sin contar la entrada masiva en Ceuta de julio).",src:"Ministerio del Interior"},
+      {t:"Personas con nacionalidad extranjera",a:["2018",4663726],b:["2026",7437543],fmt:"n",
+       note:"A 1 de julio de cada año. Las personas nacidas en el extranjero son 10,3 millones en 2026, una de cada cinco.",src:"INE"},
+      {t:"Regularización extraordinaria de 2026",a:null,b:["solicitudes",1174978],fmt:"n",
+       note:"Solicitudes presentadas para obtener permiso de residencia y trabajo, para personas llegadas antes del 1 de enero.",src:"Gobierno de España"}
+    ],
+    "Vivienda":[
+      {t:"Precio de compra (€/m², vivienda usada)",a:["2018",1680],b:["2026",2930],fmt:"e0",
+       note:"Entre junio de 2018 y septiembre de 2026.",src:"Idealista"},
+      {t:"Subida del alquiler desde 2018",a:null,b:["hasta 2026",45.2],fmt:"p",
+       note:"El alquiler medio está en 15,1 €/m² al mes en septiembre de 2026. Por ciudades: Málaga +74%, Madrid +52%, Barcelona +22%.",src:"Idealista"}
+    ],
+    "Empleo":[
+      {t:"Tasa de paro",a:["2018",14.55],b:["2026",10.18],fmt:"p",
+       note:"Tercer trimestre de cada año. En 2026 el paro subió tres décimas respecto al trimestre anterior.",src:"INE, EPA"},
+      {t:"Personas ocupadas (millones)",a:["2018",19.53],b:["2026",22.85],fmt:"m",
+       note:"Tercer trimestre. 2026 es récord de ocupados.",src:"INE, EPA"},
+      {t:"Salario mínimo (€/mes, 14 pagas)",a:["2018",735.9],b:["2026",1221],fmt:"e1",
+       note:"Los precios también han subido en este periodo.",src:"BOE"}
+    ],
+    "Impuestos y pensiones":[
+      {t:"Pensión media de jubilación (€/mes)",a:["2018",1103.47],b:["2026",1576.1],fmt:"e1",
+       note:"Septiembre de cada año. Hay 6,8 millones de pensiones de jubilación en 2026, frente a 5,95 millones en 2018.",src:"Seguridad Social"},
+      {t:"Deuda pública (% del PIB)",a:["2018",97.2],b:["2026",99.9],fmt:"p",
+       note:"Cierre de 2018 y julio de 2026. En euros, la deuda ha pasado de 1,17 a más de 1,76 billones.",src:"Banco de España"}
+    ],
+    "Delitos":[
+      {t:"Infracciones penales registradas en un año",a:["2018",2131118],b:["2025",2474156],fmt:"n",
+       note:"Incluye la cibercriminalidad (sobre todo estafas por internet), que en 2025 ya suma 489.248 casos, uno de cada cinco.",src:"Ministerio del Interior"},
+      {t:"Criminalidad convencional por cada 1.000 habitantes",a:null,b:["en 2025",40.4],fmt:"d",
+       note:"Interior la sitúa en la banda más baja de la serie. En 2025 suben los homicidios (376, +7,7%) y las agresiones sexuales con penetración (5.363, +2,8%), y bajan los robos en domicilios (−8,3%).",src:"Ministerio del Interior"}
+    ]
+  };
+  function es(x,d){return x.toLocaleString("es-ES",{minimumFractionDigits:d,maximumFractionDigits:d});}
+  function fmt(v,f){
+    if(f==="n")return es(Math.round(v),0);
+    if(f==="p")return es(v,v%1===0?0:(String(v).split(".")[1]||"").length>1?2:1)+"%";
+    if(f==="e0")return es(Math.round(v),0)+" €";
+    if(f==="e1")return es(v,v%1?2:0)+" €";
+    if(f==="m")return es(v,2);
+    if(f==="d")return es(v,1);
+    return v;
+  }
+  function delta(d){
+    if(!d.a)return "";
+    if(d.fmt==="p"){var x=d.b[1]-d.a[1];return (x>0?"+":"−")+Math.abs(x).toLocaleString("es-ES",{maximumFractionDigits:2})+" pts";}
+    var r=(d.b[1]-d.a[1])/d.a[1]*100;
+    return (r>0?"+":"−")+Math.abs(r).toLocaleString("es-ES",{maximumFractionDigits:0})+"%";
+  }
+  function countUp(node,to,f){
+    if(reduce){node.textContent=fmt(to,f);return;}
+    var t0=null,dur=1000;
+    function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/dur);var e=1-Math.pow(1-k,3);
+      node.textContent=k<1?fmt(f==="n"||f==="e0"?Math.round(to*e):Math.round(to*e*100)/100,f):fmt(to,f);
+      if(k<1)requestAnimationFrame(step);}
+    requestAnimationFrame(step);
+  }
+  function pairRow(lbl,val,max,f,now){
+    var r=document.createElement("div");r.className="pair"+(now?" now":"");
+    r.innerHTML='<span class="yr">'+lbl+'</span><div class="bar"><span></span></div><span class="val">'+fmt(val,f)+'</span>';
+    var b=r.querySelector(".bar span"); b.style.transform="scaleX("+(val/max)+")";
+    return {bar:b,ratio:val/max,row:r};
+  }
+  function renderData(topic){
+    var panel=document.getElementById("dataPanel"); panel.innerHTML="";
+    var bars=[],nums=[],list=DATA[topic];
+    list.forEach(function(d,i){
+      var c=document.createElement("article");c.className="stat"+(list.length%2&&i===list.length-1?" wide":"");
+      var chip=d.a?'<span class="chip">'+delta(d)+'</span>':"";
+      c.innerHTML='<div class="top"><h3>'+d.t+'</h3>'+chip+'</div>'+
+        '<div class="hero-num"><span class="n">'+fmt(d.b[1],d.fmt)+'</span><small>'+d.b[0]+'</small></div>';
+      nums.push([c.querySelector(".n"),d.b[1],d.fmt]);
+      if(d.a){
+        var max=Math.max(d.a[1],d.b[1]);
+        var p1=pairRow(d.a[0],d.a[1],max,d.fmt,false),p2=pairRow(d.b[0],d.b[1],max,d.fmt,true);
+        c.appendChild(p1.row);c.appendChild(p2.row);bars.push(p1,p2);
+      }
+      var n=document.createElement("p");n.className="note";n.textContent=d.note;c.appendChild(n);
+      var s=document.createElement("p");s.className="src";s.textContent="Fuente: "+d.src;c.appendChild(s);
+      panel.appendChild(c);
+      if(!reduce&&c.animate)c.animate([{opacity:.001,transform:"translateY(14px)"},{opacity:1,transform:"none"}],{duration:420,delay:i*80,easing:"cubic-bezier(.2,.7,.2,1)",fill:"backwards"});
+    });
+    if(!reduce){
+      bars.forEach(function(b){b.bar.style.transition="none";b.bar.style.transform="scaleX(0)";});
+      requestAnimationFrame(function(){requestAnimationFrame(function(){
+        bars.forEach(function(b){b.bar.style.transition="";b.bar.style.transform="scaleX("+b.ratio+")";});
+        nums.forEach(function(n){countUp(n[0],n[1],n[2]);});
+      });});
+    }
+  }
+
+  /* ---------- Propuestas ---------- */
+  var PARTIES=[["PSOE","--psoe"],["PP","--pp"],["Vox","--vox"],["Sumar","--sumar"],["Podemos","--podemos"]];
+  var PROPS={
+    "Inmigración":{
+      PSOE:["Ha aprobado la regularización extraordinaria de 2026","Control de fronteras junto con vías legales y migración circular","Repartir entre comunidades a los menores no acompañados"],
+      PP:["Visado por puntos y cupos según necesidades laborales","Prohibir por ley las regularizaciones masivas","Expulsar a extranjeros condenados por delitos graves o reincidentes","Exigir nivel B2 de español para la nacionalidad"],
+      Vox:["\"Prioridad nacional\" para españoles en ayudas y vivienda pública","Repatriar a quien entre ilegalmente y deportar a quien delinca","Despliegue militar permanente en Ceuta y Melilla"],
+      Sumar:["Mecanismo permanente de regularización","Cerrar los CIE y prohibir las devoluciones en caliente","Ley integral contra el racismo"],
+      Podemos:["Regularizar a todas las personas que viven y trabajan aquí","Derogar la Ley de Extranjería y cerrar los CIE","Sustituir Frontex por una agencia pública de salvamento"]
+    },
+    "Vivienda":{
+      PSOE:["Empresa estatal de vivienda y vivienda protegida para siempre","Prórroga de alquileres con subidas limitadas al 2%","Préstamos ICO sin intereses para la primera vivienda"],
+      PP:["Construir un millón de viviendas en cuatro años","Avales públicos de hasta el 100% de la hipoteca para jóvenes","Eliminar las zonas tensionadas y los topes al alquiler","Desalojar a okupas en 48 horas"],
+      Vox:["Liberalizar suelo y reducir trabas a la construcción","Bajar impuestos a la compra de vivienda","Derogar la intervención en el alquiler y \"mano dura\" con la okupación"],
+      Sumar:["Prohibir que fondos y empresas compren vivienda","Renovación automática de los alquileres","Dos millones de viviendas asequibles en alquiler en diez años"],
+      Podemos:["Bajar por ley un 40% los alquileres","Prohibir los pisos turísticos","Usar la mitad de las viviendas de grandes tenedores para alquiler público"]
+    },
+    "Empleo":{
+      PSOE:["Jornada media de 36 horas antes de 2030","Salario mínimo de al menos el 60% del salario medio","Que las grandes empresas repartan beneficios con la plantilla"],
+      PP:["Subir el sueldo neto bajando impuestos","Que trabajar compense más que cobrar ayudas","Un año sin cotizaciones al contratar al primer trabajador"],
+      Vox:["Contra una reducción general de jornada por ley","Bajar cotizaciones y costes laborales","Reindustrializar y mantener las nucleares"],
+      Sumar:["Jornada de 37,5 horas sin bajar el sueldo","Seguir subiendo el salario mínimo hasta el 60% del medio"],
+      Podemos:["Salario mínimo de 1.800 € al mes","Reducir la jornada sin pérdida de sueldo","Empresa pública de energía"]
+    },
+    "Impuestos y pensiones":{
+      PSOE:["IRPF del 50% para rentas de más de 300.000 €","Mantener el impuesto a la banca","Pensiones subiendo con el IPC cuatro años más"],
+      PP:["IVA 0% en alimentos básicos y 10% en luz y gas","Deflactar el IRPF y duplicar el mínimo por hijo","Pensiones con el IPC garantizado por ley"],
+      Vox:["IRPF con dos tramos (15% y 25%) y mínimo exento de 22.000 €","IVA general del 18%, Sociedades al 15%","Fondo público de pensiones de capitalización"],
+      Sumar:["Impuesto estatal a herencias de más de un millón","Impuesto permanente a grandes fortunas","Subir pensiones mínimas hasta el umbral de pobreza"],
+      Podemos:["Impuesto a grandes fortunas y a beneficios extraordinarios","Ninguna pensión por debajo del salario mínimo","No subir impuestos a trabajadores, autónomos y pymes"]
+    },
+    "Delitos":{
+      PSOE:["Más plantilla de Policía y Guardia Civil","Reforzar VioGén contra la violencia de género","Ya aprobó la ley de multirreincidencia de 2026"],
+      PP:["Tratar como robo los hurtos reiterados","Recuperar la unidad antidroga OCON-Sur","Penas más duras a las mafias de inmigración"],
+      Vox:["Expulsar en todo caso a extranjeros reincidentes","Bajar de 14 a 12 años la edad penal","Prisión permanente para violadores"],
+      Sumar:["Reformar la \"ley mordaza\"","Prohibir controles por perfil racial y pelotas de goma","Policía centrada en prevención, con cámaras corporales"],
+      Podemos:["Derogar la \"ley mordaza\"","Unidades policiales contra delitos de odio","Disolver Desokupa"]
+    }
+  };
+  function renderProps(topic){
+    var panel=document.getElementById("propPanel");panel.innerHTML="";
+    PARTIES.forEach(function(p,i){
+      var r=document.createElement("article");r.className="prop";r.style.setProperty("--c","var("+p[1]+")");
+      r.innerHTML='<div class="who">'+p[0]+'</div><ul>'+PROPS[topic][p[0]].map(function(x){return"<li>"+x+"</li>";}).join("")+'</ul>';
+      panel.appendChild(r);
+      if(!reduce&&r.animate)r.animate([{opacity:.001,transform:"translateY(14px)"},{opacity:1,transform:"none"}],{duration:420,delay:i*70,easing:"cubic-bezier(.2,.7,.2,1)",fill:"backwards"});
+    });
+  }
+
+  function buildTabs(id,topics,fn){
+    var box=document.getElementById(id);
+    topics.forEach(function(t,i){
+      var b=document.createElement("button");b.type="button";b.id=id+"-"+i;b.setAttribute("role","tab");b.textContent=t;
+      b.setAttribute("aria-selected",i===0?"true":"false");
+      b.addEventListener("click",function(){
+        box.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-selected","false");});
+        b.setAttribute("aria-selected","true");fn(t);
+      });
+      box.appendChild(b);
+    });
+    fn(topics[0]);
+  }
+  var TOPICS=Object.keys(DATA);
+  buildTabs("dataTabs",TOPICS,renderData);
+  buildTabs("propTabs",TOPICS,renderProps);
+
+  /* ---------- Test ---------- */
+  // Posiciones: 1 = a favor, -1 = en contra, 0 = sin posición clara
+  var Q=[
+    {t:"Inmigración",q:"Las regularizaciones extraordinarias de inmigrantes que ya viven aquí son una buena medida.",p:{PSOE:1,PP:-1,Vox:-1,Sumar:1,Podemos:1}},
+    {t:"Inmigración",q:"Las ayudas sociales y la vivienda pública deben dar preferencia a los españoles.",p:{PSOE:-1,PP:0,Vox:1,Sumar:-1,Podemos:-1}},
+    {t:"Inmigración",q:"La inmigración legal debe depender de cupos según las necesidades de empleo.",p:{PSOE:0,PP:1,Vox:0,Sumar:-1,Podemos:-1}},
+    {t:"Vivienda",q:"El Estado debe limitar por ley el precio de los alquileres.",p:{PSOE:1,PP:-1,Vox:-1,Sumar:1,Podemos:1}},
+    {t:"Vivienda",q:"Hay que prohibir o limitar mucho que fondos y grandes empresas compren viviendas.",p:{PSOE:0,PP:-1,Vox:0,Sumar:1,Podemos:1}},
+    {t:"Empleo",q:"Hay que reducir la jornada laboral por ley sin bajar el sueldo.",p:{PSOE:1,PP:-1,Vox:-1,Sumar:1,Podemos:1}},
+    {t:"Empleo",q:"Para crear empleo es mejor bajar cotizaciones y costes a las empresas.",p:{PSOE:-1,PP:1,Vox:1,Sumar:-1,Podemos:-1}},
+    {t:"Impuestos y pensiones",q:"Hay que bajar impuestos como el IRPF o el IVA, aunque se recaude menos.",p:{PSOE:-1,PP:1,Vox:1,Sumar:-1,Podemos:-1}},
+    {t:"Impuestos y pensiones",q:"Las grandes fortunas y herencias deben pagar más impuestos.",p:{PSOE:1,PP:-1,Vox:-1,Sumar:1,Podemos:1}},
+    {t:"Impuestos y pensiones",q:"Las pensiones deben subir cada año con el IPC, garantizado por ley.",p:{PSOE:1,PP:1,Vox:0,Sumar:1,Podemos:1}},
+    {t:"Delitos",q:"Los extranjeros condenados por delitos graves deben ser expulsados.",p:{PSOE:0,PP:1,Vox:1,Sumar:-1,Podemos:-1}},
+    {t:"Delitos",q:"Hay que derogar o reformar a fondo la ley de seguridad ciudadana (\"ley mordaza\").",p:{PSOE:1,PP:-1,Vox:-1,Sumar:1,Podemos:1}}
+  ];
+  var ans=new Array(Q.length).fill(null), cur=0, quiz=document.getElementById("quiz");
+  var OPTS=[["De acuerdo",1],["Neutral",0],["En desacuerdo",-1]];
+  function renderQ(){
+    var q=Q[cur];
+    quiz.innerHTML='<div class="progress"><span style="width:'+(cur/Q.length*100)+'%"></span></div>'+
+      '<div class="qcard"><div class="qmeta"><span>'+q.t+'</span><span>'+(cur+1)+' / '+Q.length+'</span></div>'+
+      '<p class="qtext">'+q.q+'</p></div>'+
+      '<div class="opts">'+OPTS.map(function(o,i){return '<button type="button" class="opt'+(ans[cur]===o[1]?" sel":"")+'" id="opt'+i+'" data-v="'+o[1]+'">'+o[0]+'</button>';}).join("")+'</div>'+
+      '<div class="qnav"><button type="button" class="btn" id="prev"'+(cur===0?" disabled":"")+'>Anterior</button>'+
+      '<button type="button" class="btn" id="skip">Saltar</button></div>';
+    quiz.querySelectorAll(".opt").forEach(function(b){b.addEventListener("click",function(){
+      ans[cur]=Number(b.dataset.v); b.classList.add("sel"); setTimeout(next, reduce?0:240);
+    });});
+    document.getElementById("prev").addEventListener("click",function(){if(cur>0){cur--;renderQ();}});
+    document.getElementById("skip").addEventListener("click",function(){ans[cur]=null;next();});
+  }
+  function next(){ if(cur<Q.length-1){cur++;renderQ();} else results(); }
+  function results(){
+    var score={},total={},byTopic={};
+    PARTIES.forEach(function(p){score[p[0]]=0;total[p[0]]=0;byTopic[p[0]]={};});
+    Q.forEach(function(q,i){
+      if(ans[i]===null||ans[i]===0)return;
+      PARTIES.forEach(function(p){
+        var pos=q.p[p[0]]; if(pos===0)return;
+        total[p[0]]++;
+        if(pos===ans[i]){score[p[0]]++;(byTopic[p[0]][q.t]=(byTopic[p[0]][q.t]||0)+1);}
+      });
+    });
+    var answered=ans.filter(function(a){return a!==null&&a!==0;}).length;
+    var html='<div class="progress"><span style="width:100%"></span></div><h3 style="font-size:1.5rem">Tus coincidencias</h3>';
+    if(!answered){
+      html+='<p class="muted">No has marcado ninguna respuesta de acuerdo o en desacuerdo, así que no hay nada que comparar.</p>';
+    }else{
+      html+='<p class="detail">Porcentaje de afirmaciones en las que coincides con la posición pública de cada partido, contando solo aquellas en las que el partido tiene una posición clara.</p><div class="results">';
+      PARTIES.forEach(function(p){
+        var pct=total[p[0]]?Math.round(score[p[0]]/total[p[0]]*100):0;
+        var topics=Object.keys(byTopic[p[0]]);
+        html+='<div class="rrow" style="--c:var('+p[1]+')"><b>'+p[0]+'</b><div class="bar"><span data-r="'+(pct/100)+'" style="transform:scaleX('+(pct/100)+')"></span></div><span class="num">'+pct+'%</span></div>'+
+          '<p class="detail">'+(topics.length?'Coincides en: '+topics.join(", ").toLowerCase():'Sin coincidencias')+' · '+score[p[0]]+' de '+total[p[0]]+'</p>';
+      });
+      html+='</div>';
+    }
+    var PAGE="https://claude.ai/artifact/C9hrwSpPr5q8CQoZ5N3CHF#test", txt="";
+    if(answered){
+      txt="Mi resultado en el test del 29N: "+PARTIES.map(function(p){return p[0]+" "+(total[p[0]]?Math.round(score[p[0]]/total[p[0]]*100):0)+"%";}).join(" · ")+".";
+      html+='<div class="share"><h3>Envía tu resultado</h3><p class="sharetxt" id="shareTxt"></p>'+
+        '<div class="sharebtns"><button type="button" class="btn primary" id="copyBtn">Copiar</button>'+
+        '<a class="btn" id="waBtn" target="_blank" rel="noopener">WhatsApp</a>'+
+        '<a class="btn" id="tgBtn" target="_blank" rel="noopener">Telegram</a></div></div>';
+    }
+    html+='<p class="disclaimer">Este test simplifica posiciones complejas y no sustituye leer los programas. El voto es tuyo.</p>'+
+      '<div class="qnav"><button type="button" class="btn primary" id="restart">Repetir el test</button></div>';
+    quiz.innerHTML=html;
+    if(!reduce){var bars=quiz.querySelectorAll(".rrow .bar span");bars.forEach(function(b){b.style.transition="none";b.style.transform="scaleX(0)";});
+      requestAnimationFrame(function(){requestAnimationFrame(function(){bars.forEach(function(b,i){b.style.transition="transform 1.1s cubic-bezier(.2,.7,.2,1) "+(i*90)+"ms";b.style.transform="scaleX("+b.dataset.r+")";});});});}
+    if(!reduce&&answered){
+      var rain=document.createElement("div");rain.className="rain";rain.setAttribute("aria-hidden","true");
+      for(var k=0;k<26;k++){var f=document.createElement("i");f.style.left=(Math.random()*100)+"%";
+        f.style.animationDuration=(1.6+Math.random()*1.6)+"s";f.style.animationDelay=(Math.random()*.9)+"s";
+        f.style.setProperty("--rot",(Math.random()*720-360)+"deg");rain.appendChild(f);}
+      document.body.appendChild(rain);setTimeout(function(){rain.remove();},4500);
+    }
+    if(answered){
+      var full=txt+" Haz el tuyo: "+PAGE, st=document.getElementById("shareTxt");
+      st.textContent=full;
+      document.getElementById("waBtn").href="https://wa.me/?text="+encodeURIComponent(full);
+      document.getElementById("tgBtn").href="https://t.me/share/url?url="+encodeURIComponent(PAGE)+"&text="+encodeURIComponent(txt);
+      document.getElementById("copyBtn").addEventListener("click",function(){
+        var b=this;
+        function ok(){b.textContent="Copiado";setTimeout(function(){b.textContent="Copiar";},1800);}
+        function sel(){var r=document.createRange();r.selectNodeContents(st);var s=window.getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Texto seleccionado";}
+        try{navigator.clipboard.writeText(full).then(ok,sel);}catch(e){sel();}
+      });
+    }
+    document.getElementById("restart").addEventListener("click",function(){ans.fill(null);cur=0;renderQ();});
+  }
+  renderQ();
+
+  document.querySelectorAll(".stagger").forEach(function(s){[].forEach.call(s.children,function(c,i){c.style.setProperty("--i",i);});});
+
+  /* ---------- Páginas ---------- */
+  var VIEWS=["como-votar","datos","propuestas","test"], topbar=document.getElementById("topbar"), first=true;
+  function route(){
+    var h=(location.hash||"").replace("#","");
+    var v=VIEWS.indexOf(h)>=0?h:"inicio";
+    document.querySelectorAll("[data-view]").forEach(function(e){
+      e.hidden=e.dataset.view!==v;
+      e.classList.toggle("view-in",!first&&!e.hidden&&v!=="inicio");
+      if(!e.hidden)e.querySelectorAll(".pending").forEach(function(p){p.classList.remove("pending");});
+    });
+    topbar.hidden=v==="inicio";
+    topbar.querySelectorAll("a").forEach(function(a){
+      if(a.getAttribute("href")==="#"+v)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");
+    });
+    if(!first){
+      window.scrollTo(0,0);
+      var tabs=v==="datos"?"dataTabs":v==="propuestas"?"propTabs":null;
+      if(tabs){var s=document.querySelector("#"+tabs+' [aria-selected="true"]');if(s)s.click();}
+    }
+    first=false;
+  }
+  window.addEventListener("hashchange",route);
+  route();
+
+  /* ---------- Aparición al hacer scroll ---------- */
+  if(!reduce && "IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove("pending");io.unobserve(e.target);}});},{threshold:.08});
+    document.querySelectorAll(".reveal").forEach(function(s){
+      var r=s.getBoundingClientRect(); if(r.top>window.innerHeight){s.classList.add("pending");io.observe(s);}
+    });
+  }
+})();
+</script>
+
+</body></html>
