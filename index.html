@@ -290,6 +290,12 @@ h1{font-size:clamp(1.9rem,6.4vw,3.3rem);font-weight:900;font-stretch:68%;line-he
 .share{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:10px}
 .sharetxt{background:var(--accent-soft);border-radius:10px;padding:12px 14px;font-size:.95rem;overflow-wrap:anywhere;user-select:all;-webkit-user-select:all}
 .sharebtns{display:flex;flex-wrap:wrap;gap:8px}
+.rhead{background:var(--sepia);color:var(--on-sepia);border-radius:12px;padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;overflow:hidden}
+.rhead small{display:block;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.rhead b{font:900 clamp(1.6rem,6vw,2.4rem)/1 var(--display);font-stretch:68%;text-transform:uppercase}
+.rhead span{font:900 3.4rem/.8 var(--display);font-stretch:62%;opacity:.3}
+.share{background:var(--accent-soft);border:0;border-radius:12px;padding:16px}
+.share .sharetxt{background:var(--card)}
 a.btn{text-decoration:none}
 .disclaimer{font-size:.88rem;color:var(--muted)}
 
@@ -531,6 +537,7 @@ a{color:var(--accent)}
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 (function(){
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -650,7 +657,7 @@ a{color:var(--accent)}
   }
 
   /* ---------- Propuestas ---------- */
-  var PARTIES=[["PSOE","--psoe"],["PP","--pp"],["Vox","--vox"],["Sumar","--sumar"],["Podemos","--podemos"]];
+  var PARTIES=[["PSOE","--psoe",[217,50,43]],["PP","--pp",[29,111,209]],["Vox","--vox",[79,154,46]],["Sumar","--sumar",[194,58,125]],["Podemos","--podemos",[107,63,160]]];
   var PROPS={
     "Inmigración":{
       PSOE:["Ha aprobado la regularización extraordinaria de 2026","Control de fronteras junto con vías legales y migración circular","Repartir entre comunidades a los menores no acompañados"],
@@ -731,6 +738,7 @@ a{color:var(--accent)}
     {t:"Delitos",q:"Los extranjeros condenados por delitos graves deben ser expulsados.",p:{PSOE:0,PP:1,Vox:1,Sumar:-1,Podemos:-1}},
     {t:"Delitos",q:"Hay que derogar o reformar a fondo la ley de seguridad ciudadana (\"ley mordaza\").",p:{PSOE:1,PP:-1,Vox:-1,Sumar:1,Podemos:1}}
   ];
+  var last=[];
   var ans=new Array(Q.length).fill(null), cur=0, quiz=document.getElementById("quiz");
   var OPTS=[["De acuerdo",1],["Neutral",0],["En desacuerdo",-1]];
   function renderQ(){
@@ -747,8 +755,57 @@ a{color:var(--accent)}
     document.getElementById("prev").addEventListener("click",function(){if(cur>0){cur--;renderQ();}});
     document.getElementById("skip").addEventListener("click",function(){ans[cur]=null;next();});
   }
+  function makePdf(){
+    var J=window.jspdf&&window.jspdf.jsPDF; if(!J||!last.length)return false;
+    var doc=new J({unit:"pt",format:"a4"}),W=595.28,M=48,y;
+    var INK=[22,22,46],GREY=[93,93,115];
+    function ink(c){doc.setTextColor(c[0],c[1],c[2]);}
+    function fill(c){doc.setFillColor(c[0],c[1],c[2]);}
+    // Cabecera
+    fill([233,201,160]);doc.rect(0,0,W,150,"F");
+    fill([214,174,120]);doc.rect(0,150,W,6,"F");
+    ink([42,29,12]);doc.setFont("helvetica","bold");doc.setFontSize(80);doc.text("29N",M,102);
+    doc.setFontSize(19);doc.text("Mi resultado del test",M,132);
+    doc.setFont("helvetica","normal");doc.setFontSize(10);
+    doc.text("Elecciones generales",W-M,116,{align:"right"});
+    doc.text("Domingo 29 de noviembre de 2026",W-M,132,{align:"right"});
+    // Coincidencias
+    y=192;ink(INK);doc.setFont("helvetica","bold");doc.setFontSize(13);doc.text("Coincidencia con cada partido",M,y);
+    var bx=M+92,bw=W-M-bx-60;
+    last.forEach(function(r){
+      y+=30;
+      doc.setFont("helvetica","bold");doc.setFontSize(12);ink(r.rgb);doc.text(r.name.toUpperCase(),M,y);
+      fill([230,230,236]);doc.roundedRect(bx,y-10,bw,12,6,6,"F");
+      if(r.pct>0){fill(r.rgb);doc.roundedRect(bx,y-10,Math.max(12,bw*r.pct/100),12,6,6,"F");}
+      ink(INK);doc.setFontSize(14);doc.text(r.pct+"%",W-M,y,{align:"right"});
+      doc.setFont("helvetica","normal");doc.setFontSize(8.5);ink(GREY);doc.text(r.detail,bx,y+13);
+      y+=10;
+    });
+    // Respuestas
+    y+=36;ink(INK);doc.setFont("helvetica","bold");doc.setFontSize(13);doc.text("Tus respuestas",M,y);
+    y+=8;
+    var LBL={"1":"De acuerdo","0":"Neutral","-1":"En desacuerdo"};
+    Q.forEach(function(q,i){
+      doc.setFont("helvetica","normal");doc.setFontSize(9);
+      var lines=doc.splitTextToSize((i+1)+". "+q.q,W-2*M-100);
+      var h=lines.length*11+7;
+      if(y+h>780){doc.addPage();y=60;}
+      y+=14;ink(INK);doc.text(lines,M,y);
+      doc.setFont("helvetica","bold");ink(ans[i]===null?GREY:INK);
+      doc.text(ans[i]===null?"Sin responder":LBL[String(ans[i])],W-M,y,{align:"right"});
+      y+=h-14;
+      doc.setDrawColor(220,219,227);doc.setLineWidth(.5);doc.line(M,y+3,W-M,y+3);
+    });
+    // Pie
+    doc.setFont("helvetica","normal");doc.setFontSize(8);ink(GREY);
+    doc.text("Este test simplifica posiciones complejas y no sustituye leer los programas. El voto es tuyo.",M,812);
+    doc.setFont("helvetica","bold");ink(INK);doc.text("a-la-urna.vercel.app",W-M,812,{align:"right"});
+    doc.save("mi-resultado-29n.pdf");
+    return true;
+  }
   function next(){ if(cur<Q.length-1){cur++;renderQ();} else results(); }
   function results(){
+    last=[];
     var score={},total={},byTopic={};
     PARTIES.forEach(function(p){score[p[0]]=0;total[p[0]]=0;byTopic[p[0]]={};});
     Q.forEach(function(q,i){
@@ -760,7 +817,7 @@ a{color:var(--accent)}
       });
     });
     var answered=ans.filter(function(a){return a!==null&&a!==0;}).length;
-    var html='<div class="progress"><span style="width:100%"></span></div><h3 style="font-size:1.5rem">Tus coincidencias</h3>';
+    var html='<div class="progress"><span style="width:100%"></span></div><div class="rhead"><div><small>Test 29N</small><b>Tus coincidencias</b></div><span aria-hidden="true">29N</span></div>';
     if(!answered){
       html+='<p class="muted">No has marcado ninguna respuesta de acuerdo o en desacuerdo, así que no hay nada que comparar.</p>';
     }else{
@@ -768,6 +825,7 @@ a{color:var(--accent)}
       PARTIES.forEach(function(p){
         var pct=total[p[0]]?Math.round(score[p[0]]/total[p[0]]*100):0;
         var topics=Object.keys(byTopic[p[0]]);
+        last.push({name:p[0],pct:pct,rgb:p[2],detail:(topics.length?"Coincides en: "+topics.join(", ").toLowerCase():"Sin coincidencias")+" · "+score[p[0]]+" de "+total[p[0]]});
         html+='<div class="rrow" style="--c:var('+p[1]+')"><b>'+p[0]+'</b><div class="bar"><span data-r="'+(pct/100)+'" style="transform:scaleX('+(pct/100)+')"></span></div><span class="num">'+pct+'%</span></div>'+
           '<p class="detail">'+(topics.length?'Coincides en: '+topics.join(", ").toLowerCase():'Sin coincidencias')+' · '+score[p[0]]+' de '+total[p[0]]+'</p>';
       });
@@ -776,8 +834,8 @@ a{color:var(--accent)}
     var PAGE="https://a-la-urna.vercel.app/#test", txt="";
     if(answered){
       txt="Mi resultado en el test del 29N: "+PARTIES.map(function(p){return p[0]+" "+(total[p[0]]?Math.round(score[p[0]]/total[p[0]]*100):0)+"%";}).join(" · ")+".";
-      html+='<div class="share"><h3>Envía tu resultado</h3><p class="sharetxt" id="shareTxt"></p>'+
-        '<div class="sharebtns"><button type="button" class="btn primary" id="copyBtn">Copiar</button>'+
+      html+='<div class="share"><h3>Guarda o envía tu resultado</h3><p class="sharetxt" id="shareTxt"></p>'+
+        '<div class="sharebtns"><button type="button" class="btn primary" id="pdfBtn">Descargar PDF</button><button type="button" class="btn" id="copyBtn">Copiar texto</button>'+
         '<a class="btn" id="waBtn" target="_blank" rel="noopener">WhatsApp</a>'+
         '<a class="btn" id="tgBtn" target="_blank" rel="noopener">Telegram</a></div></div>';
     }
@@ -798,9 +856,15 @@ a{color:var(--accent)}
       st.textContent=full;
       document.getElementById("waBtn").href="https://wa.me/?text="+encodeURIComponent(full);
       document.getElementById("tgBtn").href="https://t.me/share/url?url="+encodeURIComponent(PAGE)+"&text="+encodeURIComponent(txt);
+      document.getElementById("pdfBtn").addEventListener("click",function(){
+        var b=this,okPdf=false;
+        try{okPdf=makePdf();}catch(e){okPdf=false;}
+        b.textContent=okPdf?"Creando PDF…":"No se pudo crear el PDF";
+        setTimeout(function(){b.textContent="Descargar PDF";},2500);
+      });
       document.getElementById("copyBtn").addEventListener("click",function(){
         var b=this;
-        function ok(){b.textContent="Copiado";setTimeout(function(){b.textContent="Copiar";},1800);}
+        function ok(){b.textContent="Copiado";setTimeout(function(){b.textContent="Copiar texto";},1800);}
         function sel(){var r=document.createRange();r.selectNodeContents(st);var s=window.getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Texto seleccionado";}
         try{navigator.clipboard.writeText(full).then(ok,sel);}catch(e){sel();}
       });
